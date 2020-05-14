@@ -1,0 +1,1 @@
+export const api = `https://api.chucknorris.io/jokes/`
