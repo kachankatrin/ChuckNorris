@@ -6,7 +6,7 @@ import Main from './containers/Main'
 function App() {
   return (
     <div>
-      <Test />
+      
       <Main/>
     </div>
   )

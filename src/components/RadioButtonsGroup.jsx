@@ -1,9 +1,12 @@
 import React from 'react';
 import SearchField from '../components/InputField';
+import Categories from '../components/Categories';
+import {categories} from '../utils';
+
 function RadioButtons(props) {
-  const { values, handleChange, stateSearchType } = props;
+  const { values, handleChange, stateSearchType, checkedCategory, handleRadio, value, handleInput, getJoke } = props;
   return (
-    <div>
+    <form>
       {values.map(item => {
         console.log(item.search)
         return (
@@ -20,13 +23,26 @@ function RadioButtons(props) {
               />
             </label>
             {stateSearchType === 'textsearch' && item.name === 'textsearch'
-              ? <SearchField /> 
+              ? <SearchField value={value} handleInput={handleInput}/> 
               : null 
+            }
+            {stateSearchType === 'categories' && item.name === 'categories'
+              ? <Categories 
+                values={[
+                  {value: categories[0], label: categories[0], checked: checkedCategory === categories[0]},
+                  {value: categories[1], label: categories[1], checked: checkedCategory === categories[1]},
+                  {value: categories[2], label: categories[2], checked: checkedCategory === categories[2]},
+                  {value: categories[3], label: categories[3], checked: checkedCategory === categories[3]}
+                ]}
+                handleChange={handleRadio}
+              />
+              : null
             }
           </div>
         )
       })}
-    </div>
+      <button type='button' onClick={getJoke}>Get a joke</button>
+    </form>
   )
 }
 export default RadioButtons;

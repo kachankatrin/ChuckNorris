@@ -1,8 +1,7 @@
 import React from 'react';
 import RadioButtons from './RadioButtonsGroup'
 function Search(props){
-  const query = 'chuck'; //temporary
-  const category = 'animal'; //temporary
+  // const query = 'chuck'; //temporary
     return (
       <div>
         <RadioButtons 
@@ -14,21 +13,26 @@ function Search(props){
               changeSearchType: (e)=>{props.changeSearchType(e, 'searchType')}
             },
             {name: 'categories', 
-              value: `random?category=${category}`, 
+              value: `random?category=`, 
               label: 'From categories', 
-              checked: props.checkedValue === `random?category=${category}`, 
+              checked: props.checkedValue === `random?category=`, 
               changeSearchType: (e)=>{props.changeSearchType(e, 'searchType')}
             },
 
             {name: 'textsearch', 
-              value: `search?query=${query}`, 
+              value: `search?query=`, 
               label: 'Search', 
-              checked: props.checkedValue === `search?query=${query}`, 
+              checked: props.checkedValue === `search?query=`, 
               changeSearchType: (e)=>{props.changeSearchType(e, 'searchType')}
             }
           ]}
           stateSearchType = {props.stateSearchType}
           handleChange={(e) => {props.handleRadio(e, 'search')}}
+          checkedCategory={props.checkedCategory}
+          handleRadio={(e) => {props.selectCategory(e, 'category')}}
+          value={props.value}
+          handleInput={props.onChange}
+          getJoke={props.getJoke}
         />
       </div>
     )
