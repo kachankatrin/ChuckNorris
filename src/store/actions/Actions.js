@@ -5,24 +5,21 @@ export const CHANGE_RADIO  = 'CHANGE_RADIO';
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
+export const ADD_JOKE = 'ADD_JOKE';
+export const REMOVE_JOKE = 'REMOVE_JOKE';
+export const SWITCH_PAGE = 'SWITCH_PAGE';
+export const LOCAL_STORAGE = 'LOCAL_STORAGE';
 
 export const getJoke = (checkedValue) => {
-  if (checkedValue === null) {
+  if (checkedValue === '') {
     return {type: DATA_LOADED, payload: 'null'}
   }
-  // if (checkedValue.includes('search')) {
-    
-  // }
   return async(dispatch) => {
     const data = await fetch(`${api}/${checkedValue}`);
     console.log(data)
     const json = await data.json();
     console.log(json)
-    // const jokes = []
-    // const result = checkedValue.includes('search') ? json.result.map(item => {console.log(item.value); return jokes.push({value: item.value})}) : jokes.push({value: json.value});
-    // console.log(jokes)
     const result = checkedValue.includes('search') ? json.result : [json];
-    // console.log(result)
     const res = await dispatch({ type: DATA_LOADED, payload: result});
     console.log(res)
   }
@@ -36,7 +33,6 @@ export const handleRadio = (e, key) => {
   }
 }
 export const changeSearchType = (e, searchType) => {
-  console.log(e)
   return {
     type: SET_SEARCH_TYPE,
     payload: {type: e.target.name, searchType}
@@ -52,5 +48,29 @@ export const handleInput = (e, key) => {
   return {
     type: CHANGE_INPUT,
     payload: { value: e.target.value, key }
+  }
+}
+export const addJoke = (joke) => {
+  return {
+    type: ADD_JOKE,
+    payload: joke
+  }
+}
+export const removeJoke = (joke) => {
+  return {
+    type: REMOVE_JOKE,
+    payload: joke.id
+  }
+}
+export const stateLocalExchange = (arr) => {
+  return {
+    type: LOCAL_STORAGE,
+    payload: arr
+  }
+}
+export const paginate = (page) => {
+  return {
+    type: SWITCH_PAGE,
+    payload: page
   }
 }

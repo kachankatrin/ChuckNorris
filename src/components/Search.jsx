@@ -1,7 +1,6 @@
 import React from 'react';
-import RadioButtons from './RadioButtonsGroup'
+import RadioButtons from './RadioButtonsGroup';
 function Search(props){
-  // const query = 'chuck'; //temporary
     return (
       <div>
         <RadioButtons 
@@ -18,7 +17,6 @@ function Search(props){
               checked: props.checkedValue === `random?category=`, 
               changeSearchType: (e)=>{props.changeSearchType(e, 'searchType')}
             },
-
             {name: 'textsearch', 
               value: `search?query=`, 
               label: 'Search', 

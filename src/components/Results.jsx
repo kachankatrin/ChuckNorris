@@ -1,40 +1,53 @@
-import React , { useState, useEffect } from 'react';
-// import { useState, useEffect } from 'react';
-import Pagination from '../components/Pagination'
-function Results (props) {
-  // const [jokes, setJokes] = useState([]);
-  const [currentPage, setcurrentPage] = useState(1);
-  const [jokesPerPage] = useState(10);
-  const indexOfLastJoke = currentPage * jokesPerPage;
-  const indexOfFirstJoke = indexOfLastJoke - jokesPerPage; 
-  const currentJokes = props.results.slice(indexOfFirstJoke, indexOfLastJoke)
-  const paginate = (page) => setcurrentPage(page);
-  const currentDate = Date.now()
-  console.log(currentDate)
+import React, {useEffect} from 'react';
+
+function Results({ 
+  isFavoriteJoke, 
+  addJoke, 
+  removeJoke, 
+  joke, 
+  item, 
+  updatedHours, 
+  favoriteJokes, 
+  stateLocalExchange 
+}) {
+  useEffect(() => {
+    localStorage.setItem('favArr', JSON.stringify(favoriteJokes))
+  });
+  const heart = !isFavoriteJoke
+    ? <i className="far fa-heart"></i>
+    : <i className="fas fa-heart"></i>;
+  const handleAction = !isFavoriteJoke
+    ? addJoke
+    : removeJoke;
+  const storage = localStorage.getItem('favItem' + (joke) || 0);
+  console.log(storage)
+  if (storage === null) {
+    localStorage.setItem(('favItem' + (joke)), JSON.stringify(favoriteJokes))
+  } else {
+    localStorage.removeItem('favItem' + (joke))
+  }
+  const getArray= JSON.parse(localStorage.getItem('favArr') || '0');
+  useEffect(() => {
+    if (getArray !== 0) {
+      stateLocalExchange(getArray)
+    }
+  }, [])
   return (
-      <div>
-      <ul>
-        {currentJokes.map(item => { 
-          const upatedTimestamp = Date.parse(item.updated_at);
-          console.log(upatedTimestamp)
-          const updatedHours = Math.ceil((currentDate - upatedTimestamp) / 3600000)
-          return (
-            <li>
-            <i className="far fa-heart"></i> 
-              <p>{item.value}</p>
-              <a href={item.url}>ID: {item.id}</a>
-              <span>{item.categories && item.categories.length ? item.categories[0] : null}</span>
-              <span>Last updated: {updatedHours} hours ago</span>
-            </li>
-          )
-        }
-          
-          )}
-      </ul>
-      <Pagination jokesPerPage={jokesPerPage} totalJokes={props.results.length} paginate={paginate} currentPage={currentPage}/>
+    <li id={item.id}>
+      <div id={item.id}>
+        <button onClick={(e) => {e.stopPropagation(); handleAction(joke)}}>
+          {heart}
+        </button>
       </div>
-    )
-  
+      <p>{item.value}</p>
+      <div>
+        <span>ID: </span>
+        <a href={item.url}>{item.id}</a>
+      </div>
+      <span>{item.categories && item.categories.length ? item.categories[0] : null}</span>
+      <span>Last updated: {updatedHours} hours ago</span>
+    </li>
+  )
 }
 
 export default Results;
