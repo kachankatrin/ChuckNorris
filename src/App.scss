@@ -1,0 +1,168 @@
+@import './scss/main-container.scss';
+@import './scss//favorites-container.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  &:focus {
+    outline: none;
+  }
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-size: 1.4rem;
+  font-family: 'Roboto';
+  color: #333333;
+}
+// li {
+//   padding: 30px;
+//   background-color: gainsboro;
+//   margin: 10px;
+// }
+
+.flex-container {
+  max-width: 144rem;
+  display: flex;
+  height: 100vh;
+  .sandwitch-menu {
+    display: none;
+    justify-content: start;
+    width: fit-content;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    z-index: 100;
+    .sandwitch {
+      margin: 0 1rem;
+    }
+    h1 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 2.8rem;
+      color: #ABABAB;
+      margin-bottom: 2rem;
+    }
+  }
+}
+@media only screen and (max-width: 380px) {
+  .flex-container {
+    .sandwitch-menu {
+      top: 2rem;
+      right: 2rem;
+    }
+    .main-container {
+      .main {
+        padding: 2rem;
+        .jokes-list {
+          .single-joke {
+            padding: 4.7rem 2rem 2rem 8rem;
+            .add-to-fav {
+              top: 2rem;
+              right: 2rem;
+            }
+            .message-icon {
+              top: 4.7rem;
+              left: 2rem;
+            }
+            // .footer-list {
+            //   flex-flow: row wrap;
+            // }
+          }
+        }
+      }
+    }
+    .favorites-container {
+      padding: 8.8rem 2rem 2rem 2rem;
+    }
+  }
+}
+@media only screen and (max-width: 834px) {
+    .flex-container {
+      .sandwitch-menu {
+        display: flex;
+      }
+      .dark {
+        background: rgba(0, 0, 0, 0.3);
+      }
+      // .main-container {
+      //   .main {
+      //     padding: 4rem;
+      //   }
+      // }
+      .tablet {
+        left: -2px;
+        top: 0px;
+        position: absolute;
+      }
+      // .main-container {
+      //   .main {
+      //     .jokes-list {
+      //       .single-joke {
+      //         .footer-list {
+      //           // flex-flow: row wrap;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+      .favorites-container {
+        // padding: 8.8rem 4rem 4rem 4rem;
+        max-width: 48rem;
+        z-index: 99;
+        position: fixed;
+        top: 0;
+        right: 0;
+        h1 {
+          display: none;
+        }
+      }
+      .open {
+        display: block
+      }
+      .close {
+        display: none;
+      }
+    }
+}
+
+@media only screen and (min-width: 381px) and (max-width: 834px) {
+  .flex-container {
+    // .sandwitch-menu {
+    //   display: flex;
+    // }
+    // .dark {
+    //   background: rgba(0, 0, 0, 0.3);
+    // }
+    .main-container {
+      .main {
+        padding: 4rem;
+      }
+    }
+    // .tablet {
+    //   left: -2px;
+    //   top: 0px;
+    //   position: absolute;
+    // }
+    .favorites-container {
+      padding: 8.8rem 4rem 4rem 4rem;
+      // max-width: 48rem;
+      // z-index: 99;
+      // position: fixed;
+      // top: 0;
+      // right: 0;
+      // h1 {
+      //   display: none;
+      // }
+    }
+    // .open {
+    //   display: block
+    // }
+    // .close {
+    //   display: none;
+    // }
+  }
+}

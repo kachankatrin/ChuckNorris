@@ -8,7 +8,8 @@ export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const ADD_JOKE = 'ADD_JOKE';
 export const REMOVE_JOKE = 'REMOVE_JOKE';
 export const SWITCH_PAGE = 'SWITCH_PAGE';
-export const LOCAL_STORAGE = 'LOCAL_STORAGE';
+export const INDEX_OF_LAST_JOKE = 'INDEX_OF_LAST_JOKE';
+export const OPEN_FAVORITES = 'OPEN_FAVORITES';
 
 export const getJoke = (checkedValue) => {
   if (checkedValue === '') {
@@ -18,15 +19,18 @@ export const getJoke = (checkedValue) => {
     const data = await fetch(`${api}/${checkedValue}`);
     console.log(data)
     const json = await data.json();
-    console.log(json)
-    const result = checkedValue.includes('search') ? json.result : [json];
+    console.log(json, data.ok);
+    const good = checkedValue.includes('search') ? json.result : [json];
+    const result = data.ok ? good : [json.violations];
+    console.log(result.length)
+    console.log(result)
     const res = await dispatch({ type: DATA_LOADED, payload: result});
     console.log(res)
   }
 }
 
 export const handleRadio = (e, key) => {
-  console.log(e.target)
+  console.log(e.target.checked)
   return {
     type: CHANGE_RADIO,
     payload: { value: e.target.value, key }
@@ -51,9 +55,13 @@ export const handleInput = (e, key) => {
   }
 }
 export const addJoke = (joke) => {
-  return {
-    type: ADD_JOKE,
-    payload: joke
+  return async (dispatch) => {
+    // add joke to localStorage
+
+    dispatch({
+      type: ADD_JOKE,
+      payload: joke
+    })
   }
 }
 export const removeJoke = (joke) => {
@@ -62,15 +70,19 @@ export const removeJoke = (joke) => {
     payload: joke.id
   }
 }
-export const stateLocalExchange = (arr) => {
-  return {
-    type: LOCAL_STORAGE,
-    payload: arr
-  }
-}
 export const paginate = (page) => {
   return {
     type: SWITCH_PAGE,
     payload: page
+  }
+}
+export const getIndexOfLastJoke = () => {
+  return {
+    type: INDEX_OF_LAST_JOKE
+  }
+}
+export const handleFavoritesOpen = (e) => {
+  return {
+    type: OPEN_FAVORITES
   }
 }

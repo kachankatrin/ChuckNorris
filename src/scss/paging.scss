@@ -1,0 +1,29 @@
+.paging {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-flow: row wrap;
+  li {
+    padding: 1.5rem;
+    text-align: center;
+    font-family: Montserrat-SemiBold;
+    color: #000000a6;
+    font-size: 1.7rem;
+    margin: 0.6rem;
+    &:hover {
+      transform: scale(1.2);
+      background-color: #F8F8F8;;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  }
+  .current {
+    background-color: #ABABAB;
+    border: 1px solid #ABABAB;
+    border-radius: 20px;
+    &:hover {
+      transform: scale(1.4);
+      background-color: #ABABAB;
+    }
+  }
+}

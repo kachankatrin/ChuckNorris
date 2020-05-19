@@ -1,0 +1,38 @@
+@import './radio-container.scss';
+@import './joke-element.scss';
+@import './paging.scss';
+.main-container {
+  flex: 2;
+  overflow-y: auto;
+  height: 100vh;
+  .main {
+    padding: 4rem 14rem 14rem;
+    h3 {
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 2.8rem;
+      width: fit-content;
+    }
+    .search-container {
+      margin-top: 7.8rem;
+      margin-bottom: 4rem;
+      h1 {
+        font-size: 3.2rem;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 4.4rem;
+      }
+      h2 {
+        font-size: 2.4rem;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 4.4rem;
+        width: fit-content;
+      }
+      form {
+        margin-top: 4.3rem;
+      }
+    }
+  }
+}

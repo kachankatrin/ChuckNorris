@@ -45,3 +45,28 @@ export const dotedPagination = (current, last, li) => {
   }
   return M.map(item => item)
 };
+
+export const loadStateFromLocalStorage = () => {
+  try {
+    const serializedState = localStorage.getItem('favArr');
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState)
+  } catch(err) {
+    return undefined;
+  }
+};
+
+export const saveStateToLocalStorage = (state) => {
+  console.log(state)
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('favArr', serializedState);
+  } catch(err) {
+ }
+}
+
+
+
+// const localFavoriteJokes = localStorage.getItem('favArr');

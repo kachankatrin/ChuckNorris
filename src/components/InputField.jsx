@@ -6,7 +6,7 @@ function SearchField(props) {
       type='search' 
       onChange={props.handleInput} 
       value={props.value} 
-      placeholder='search...' 
+      placeholder='Free text search...' 
     />
   )
 }

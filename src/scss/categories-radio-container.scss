@@ -1,0 +1,29 @@
+.flex-container .categories-container {
+  max-width: 36.4rem;
+  justify-content: space-between;
+  height: fit-content;
+  flex-flow: row wrap;
+  margin: 1rem 0;
+  .categories-radio-container {
+    margin: 1rem 0;
+    .radiobutton-categories {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: #ABABAB;
+      vertical-align: middle;
+      border: 2px solid #F8F8F8;;
+      box-sizing: border-box;
+      border-radius: 0.6rem;
+      padding: 0.5rem 1.3rem;
+      cursor: pointer;
+      input {
+        display: none;
+        
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { dotedPagination } from '../utils';
-function Pagination({ jokesPerPage, totalJokes, paginate, currentPage }) {
+function Pagination({ jokesPerPage, totalJokes, paginate, currentPage, getIndexOfLastJoke }) {
   const allPages = Math.ceil(totalJokes / jokesPerPage);
 
   function li(page, text) {
@@ -8,7 +8,7 @@ function Pagination({ jokesPerPage, totalJokes, paginate, currentPage }) {
       className={currentPage === page ? 'current' : ''}
       value={page}
       id={page}
-      onClick={() => paginate(page)}
+      onClick={() => {paginate(page); getIndexOfLastJoke()}}
     >
       {text}
     </li>
@@ -16,14 +16,14 @@ function Pagination({ jokesPerPage, totalJokes, paginate, currentPage }) {
   const dotedList = dotedPagination(currentPage, allPages, li);
   const pageDotedNumbers = allPages > 1
     ? (
-      <ul>
+      <ul className='paging'>
 
         <li
           value='0'
           id="prev"
-          onClick={() => paginate(currentPage > 1
+          onClick={() => {paginate(currentPage > 1
             ? (currentPage - 1)
-            : currentPage)
+            : currentPage); getIndexOfLastJoke()}
           }
         >
           Prev
@@ -34,9 +34,9 @@ function Pagination({ jokesPerPage, totalJokes, paginate, currentPage }) {
         <li
           value=''
           id="next"
-          onClick={() => paginate(currentPage < allPages
+          onClick={() => {paginate(currentPage < allPages
             ? (currentPage + 1)
-            : currentPage)
+            : currentPage); getIndexOfLastJoke()}
           }
         >
           Next

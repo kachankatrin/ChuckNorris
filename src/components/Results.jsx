@@ -1,52 +1,46 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import { ReactComponent as EmptyHeart } from '../svg/EmptyHeart.svg';
+import { ReactComponent as Heart } from '../svg/heart.svg';
+import { ReactComponent as Message } from '../svg/message.svg';
+import { ReactComponent as Link } from '../svg/link.svg';
 
-function Results({ 
-  isFavoriteJoke, 
-  addJoke, 
-  removeJoke, 
-  joke, 
-  item, 
-  updatedHours, 
-  favoriteJokes, 
-  stateLocalExchange 
+function Results({
+  isFavoriteJoke,
+  addJoke,
+  removeJoke,
+  joke,
+  item,
+  updatedHours,
+  classLi
 }) {
-  useEffect(() => {
-    localStorage.setItem('favArr', JSON.stringify(favoriteJokes))
-  });
+
   const heart = !isFavoriteJoke
-    ? <i className="far fa-heart"></i>
-    : <i className="fas fa-heart"></i>;
+    ? <EmptyHeart />
+    : <Heart />;
   const handleAction = !isFavoriteJoke
     ? addJoke
     : removeJoke;
-  const storage = localStorage.getItem('favItem' + (joke) || 0);
-  console.log(storage)
-  if (storage === null) {
-    localStorage.setItem(('favItem' + (joke)), JSON.stringify(favoriteJokes))
-  } else {
-    localStorage.removeItem('favItem' + (joke))
-  }
-  const getArray= JSON.parse(localStorage.getItem('favArr') || '0');
-  useEffect(() => {
-    if (getArray !== 0) {
-      stateLocalExchange(getArray)
-    }
-  }, [])
   return (
-    <li id={item.id}>
-      <div id={item.id}>
-        <button onClick={(e) => {e.stopPropagation(); handleAction(joke)}}>
+    item['search.query']
+      ? <li className={classLi + 'error'}>err: {item['search.query']}</li>
+      : <li className={classLi} id={item.id}>
+
+        <i className='add-to-fav' onClick={(e) => { e.stopPropagation(); handleAction(joke) }}>
           {heart}
-        </button>
-      </div>
-      <p>{item.value}</p>
-      <div>
-        <span>ID: </span>
-        <a href={item.url}>{item.id}</a>
-      </div>
-      <span>{item.categories && item.categories.length ? item.categories[0] : null}</span>
-      <span>Last updated: {updatedHours} hours ago</span>
-    </li>
+        </i>
+        <i className='message-icon'><Message /></i>
+        {item.id
+          ? <div className='link'>
+            <span className='id'>ID: </span>
+            <span><a href={item.url}>{item.id}</a><i> <Link /></i></span>
+          </div>
+          : null}
+        <p>{item.value}</p>
+        <div className='footer-list'>
+          {updatedHours ? <span className='hours'>Last updated: {updatedHours} hours ago</span> : null}
+          {item.categories && item.categories.length ? <p className='category'>{item.categories[0]}</p> : null}
+        </div>
+      </li>
   )
 }
 

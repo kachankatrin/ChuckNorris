@@ -6,7 +6,14 @@ import { BrowserRouter } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
+import { saveStateToLocalStorage } from './utils';
+
 const history = createBrowserHistory;
+store.subscribe(() => {
+  const favoriteJokes = store.getState().favoritesState.favoriteJokes
+  // console.log(storeM.favoritesState)
+  saveStateToLocalStorage(favoriteJokes);
+})
 ReactDOM.render(
   <Provider store={store}>
       <BrowserRouter history={history}>

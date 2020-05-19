@@ -1,0 +1,20 @@
+.result-button {
+  margin-top: 1rem;
+  background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+  border-radius: 10px;
+  width: 15.2rem;
+  padding: 1rem 1.4rem;
+  text-align: center;
+  border: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  color: #FFFFFF;
+  &:active {
+    transform: scale(0.9);
+  }
+}
+button:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,32 @@
+.favorites-container {
+  flex: 1;
+  background: #F8F8F8;
+  overflow-y: auto;
+  height: 100vh;
+  .favorites {
+    padding: 4rem;
+    h1 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 2.8rem;
+      color: #ABABAB;
+      margin-bottom: 2rem;
+    }
+    .jokes-list {
+      .single-joke {
+        padding: 4.7rem 2rem 2rem 8rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        .add-to-fav {
+          top: 2rem;
+          right: 2rem;
+        }
+        .message-icon {
+          top: 4.7rem;
+          left: 2rem;
+        }
+      }
+    }
+  }
+}
