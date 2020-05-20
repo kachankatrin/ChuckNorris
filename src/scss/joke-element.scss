@@ -1,7 +1,7 @@
 
   .jokes-list {
     .single-joke {
-      padding: 6.7rem 4rem 4.5rem 10rem;
+      padding: 6.7rem 4rem 4rem 10rem;
       background: #F8F8F8;
       border-radius: 20px;
       position: relative;
@@ -57,7 +57,7 @@
         font-size: 1rem;
         line-height: 1.4rem;
         color: #ABABAB;
-        padding: 0.6rem 0rem
+        padding: 0.5rem 0rem
       }
       .category {
         font-style: normal;
@@ -70,6 +70,7 @@
         background: #FFFFFF;
         border-radius: 6px;
         padding: 0.6rem 2rem;
+        max-height: 2.4rem;
       }
     }
   }

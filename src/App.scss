@@ -26,7 +26,8 @@ body {
 .flex-container {
   max-width: 144rem;
   display: flex;
-  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   .sandwitch-menu {
     display: none;
     justify-content: start;
@@ -37,6 +38,7 @@ body {
     z-index: 100;
     .sandwitch {
       margin: 0 1rem;
+      cursor: pointer;
     }
     h1 {
       font-style: normal;
@@ -68,15 +70,20 @@ body {
               top: 4.7rem;
               left: 2rem;
             }
-            // .footer-list {
-            //   flex-flow: row wrap;
-            // }
+            .footer-list {
+              .hours {
+              padding-bottom: 1rem;
+              margin-right: 3rem;
+            }
+            }
           }
         }
       }
     }
     .favorites-container {
-      padding: 8.8rem 2rem 2rem 2rem;
+      .favorites {
+        padding: 8.8rem 2rem 2rem 2rem;
+    }
     }
   }
 }
@@ -87,30 +94,18 @@ body {
       }
       .dark {
         background: rgba(0, 0, 0, 0.3);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
       }
-      // .main-container {
-      //   .main {
-      //     padding: 4rem;
-      //   }
-      // }
       .tablet {
         left: -2px;
         top: 0px;
         position: absolute;
       }
-      // .main-container {
-      //   .main {
-      //     .jokes-list {
-      //       .single-joke {
-      //         .footer-list {
-      //           // flex-flow: row wrap;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
       .favorites-container {
-        // padding: 8.8rem 4rem 4rem 4rem;
         max-width: 48rem;
         z-index: 99;
         position: fixed;
@@ -126,43 +121,37 @@ body {
       .close {
         display: none;
       }
+      .main-container {
+        .main {
+          .search-container {
+            form {
+              .radio-container {
+                .categories-container {
+                  justify-content: start;
+                  max-width: unset;
+                  .categories-radio-container  {
+                    margin-right: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 }
 
 @media only screen and (min-width: 381px) and (max-width: 834px) {
   .flex-container {
-    // .sandwitch-menu {
-    //   display: flex;
-    // }
-    // .dark {
-    //   background: rgba(0, 0, 0, 0.3);
-    // }
     .main-container {
       .main {
         padding: 4rem;
       }
     }
-    // .tablet {
-    //   left: -2px;
-    //   top: 0px;
-    //   position: absolute;
-    // }
     .favorites-container {
-      padding: 8.8rem 4rem 4rem 4rem;
-      // max-width: 48rem;
-      // z-index: 99;
-      // position: fixed;
-      // top: 0;
-      // right: 0;
-      // h1 {
-      //   display: none;
-      // }
+      .favorites {
+        padding: 8.8rem 4rem 4rem 4rem;
+      }
     }
-    // .open {
-    //   display: block
-    // }
-    // .close {
-    //   display: none;
-    // }
   }
 }

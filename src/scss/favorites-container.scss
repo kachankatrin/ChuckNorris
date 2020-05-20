@@ -1,8 +1,6 @@
 .favorites-container {
   flex: 1;
   background: #F8F8F8;
-  overflow-y: auto;
-  height: 100vh;
   .favorites {
     padding: 4rem;
     h1 {
@@ -14,8 +12,11 @@
       margin-bottom: 2rem;
     }
     .jokes-list {
+      overflow-y: auto;
+      height: 100vh;
+      padding-bottom: 10rem;
       .single-joke {
-        padding: 4.7rem 2rem 2rem 8rem;
+        padding: 4.7rem 2rem 1.4rem 8rem;
         border-radius: 10px;
         margin-bottom: 2rem;
         .add-to-fav {

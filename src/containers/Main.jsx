@@ -9,6 +9,7 @@ import {
   addJoke,
   removeJoke,
   getIndexOfLastJoke,
+  closeDarkBg
 } from '../store/actions/Actions';
 import { connect } from 'react-redux';
 import Search from '../components/Search';
@@ -16,15 +17,15 @@ import Results from '../components/Results';
 import Pagination from '../components/Pagination';
 
 
-
 class Main extends React.Component {
   render() {
     const indexOfFirstJoke = this.props.jokeState.indexOfLastJoke - this.props.jokeState.jokesPerPage;
     const currentJokes = this.props.jokeState.jokes.slice(indexOfFirstJoke, this.props.jokeState.indexOfLastJoke);
-    const darkClass = this.props.jokeState.isDarkBg ? 'dark' : ''
-    const favoriteOpen = this.props.jokeState.isFavoritesOpen ? 'tablet' : '';
+    const darkClass = this.props.favoritesState.isDarkBg ? 'dark' : ''
+    const favoriteOpen = this.props.favoritesState.isFavoritesOpen ? 'tablet' : '';
     return (
-      <div className={favoriteOpen + ' main-container ' + darkClass}>
+      <div className={favoriteOpen + ' main-container '}>
+      <div className={darkClass} onClick={this.props.closeDarkBg}></div>
         <div className='main'>
           <h3>MSI 2020</h3>
           <Search
@@ -48,6 +49,7 @@ class Main extends React.Component {
                   <Results
                     addJoke={this.props.addJoke}
                     removeJoke={this.props.removeJoke}
+                    closeDarkBg={this.props.closeDarkBg}
                     item={item}
                     updatedHours={updatedHours}
                     joke={item}
@@ -90,6 +92,7 @@ const mapDispatchToProps = {
   paginate,
   addJoke,
   removeJoke,
-  getIndexOfLastJoke
+  getIndexOfLastJoke,
+  closeDarkBg
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

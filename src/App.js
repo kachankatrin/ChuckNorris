@@ -6,8 +6,9 @@ import Favorites from './containers/Favorites';
 import { OPEN_FAVORITES } from './store/actions/Actions';
 import { ReactComponent as Sandwitch } from './svg/sandwitch.svg';
 import { ReactComponent as Close } from './svg/close.svg';
-
+// import { scroll } from './utils';
 function App() {
+  // const ref = React.createRef()
   const { store } = useContext(ReactReduxContext);
   const { getState, dispatch, subscribe } = store;
   const [ storeState, setStoreState ] = useState(getState());
@@ -16,7 +17,8 @@ function App() {
   , []))
   console.log(storeState, dispatch)
   const favoriteJokes = storeState.favoritesState.favoriteJokes;
-  const isFavoritesOpen = storeState.jokeState.isFavoritesOpen;
+  const isFavoritesOpen = storeState.favoritesState.isFavoritesOpen;
+  
   return (
     <div className='flex-container'>
     {favoriteJokes.length

@@ -4,7 +4,7 @@ import Results from '../components/Results';
 import { addJoke, removeJoke } from '../store/actions/Actions';
 
 function Favorites(props) {
-  const favoriteOpen = props.jokeState.isFavoritesOpen ? 'open' : 'close';
+  const favoriteOpen = props.isFavoritesOpen ? 'open' : 'close';
   return (
     props.favoriteJokes.length ?
       <div className={'favorites-container ' + favoriteOpen}>
@@ -36,7 +36,8 @@ function Favorites(props) {
 const mapStateToProps = (state) => {
   return {
     jokeState: state.jokeState,
-    favoriteJokes: state.favoritesState.favoriteJokes
+    favoriteJokes: state.favoritesState.favoriteJokes,
+    isFavoritesOpen: state.favoritesState.isFavoritesOpen
   }
 }
 const mapDispatchToProps = {

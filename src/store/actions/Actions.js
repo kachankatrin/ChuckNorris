@@ -10,25 +10,17 @@ export const REMOVE_JOKE = 'REMOVE_JOKE';
 export const SWITCH_PAGE = 'SWITCH_PAGE';
 export const INDEX_OF_LAST_JOKE = 'INDEX_OF_LAST_JOKE';
 export const OPEN_FAVORITES = 'OPEN_FAVORITES';
+export const CLOSE_DARK_BG = 'CLOSE_DARK_BG';
 
 export const getJoke = (checkedValue) => {
-  if (checkedValue === '') {
-    return {type: DATA_LOADED, payload: 'null'}
-  }
   return async(dispatch) => {
     const data = await fetch(`${api}/${checkedValue}`);
-    console.log(data)
     const json = await data.json();
-    console.log(json, data.ok);
-    const good = checkedValue.includes('search') ? json.result : [json];
-    const result = data.ok ? good : [json.violations];
-    console.log(result.length)
-    console.log(result)
+    const success = checkedValue.includes('search') ? json.result : [json];
+    const result = data.ok ? success : [json.violations];
     const res = await dispatch({ type: DATA_LOADED, payload: result});
-    console.log(res)
   }
 }
-
 export const handleRadio = (e, key) => {
   console.log(e.target.checked)
   return {
@@ -67,7 +59,7 @@ export const addJoke = (joke) => {
 export const removeJoke = (joke) => {
   return {
     type: REMOVE_JOKE,
-    payload: joke.id
+    payload: {remove: joke.id}
   }
 }
 export const paginate = (page) => {
@@ -84,5 +76,10 @@ export const getIndexOfLastJoke = () => {
 export const handleFavoritesOpen = (e) => {
   return {
     type: OPEN_FAVORITES
+  }
+}
+export const closeDarkBg = () => {
+  return {
+    type: CLOSE_DARK_BG
   }
 }

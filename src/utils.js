@@ -66,7 +66,3 @@ export const saveStateToLocalStorage = (state) => {
   } catch(err) {
  }
 }
-
-
-
-// const localFavoriteJokes = localStorage.getItem('favArr');

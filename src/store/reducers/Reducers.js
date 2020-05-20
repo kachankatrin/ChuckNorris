@@ -9,6 +9,7 @@ import {
   SWITCH_PAGE, 
   INDEX_OF_LAST_JOKE,
   OPEN_FAVORITES,
+  CLOSE_DARK_BG
 } from '../actions/Actions';
 import { loadStateFromLocalStorage } from '../../utils';
 
@@ -23,8 +24,6 @@ const initStore = {
   jokesPerPage: 5,
   indexOfLastJoke: null,
   currentDate: Date.now(),
-  isFavoritesOpen: false,
-  isDarkBg: false,
 }
 export const jokesReducer = (initialState = initStore, action) => {
   if (action.type === DATA_LOADED) {
@@ -35,7 +34,7 @@ export const jokesReducer = (initialState = initStore, action) => {
       textsearch: '',
       currentPage: 1,
       indexOfLastJoke: 1 * initialState.jokesPerPage,
-      searchapi: initialState.search + ''
+      searchapi: initialState.textsearch ? initialState.search + '' : initialState.searchapi
     }
   }
   if (action.type === CHANGE_RADIO) {
@@ -79,18 +78,14 @@ export const jokesReducer = (initialState = initStore, action) => {
       indexOfLastJoke: initialState.currentPage * initialState.jokesPerPage
     }
   }
-  if (action.type === OPEN_FAVORITES) {
-    return {
-      ...initialState,
-      isFavoritesOpen: !initialState.isFavoritesOpen,
-      isDarkBg: !initialState.isDarkBg
-    }
-  }
   return initialState
 }
 
 const favoritesStore = {
-  favoriteJokes: loadStateFromLocalStorage() || []
+  favoriteJokes: loadStateFromLocalStorage() || [],
+  isFavoritesOpen: false,
+  isDarkBg: false,
+  theposition: window.pageYOffset
 }
 
 export const favoritesReducer = (initialState = favoritesStore, action) => {
@@ -104,7 +99,21 @@ export const favoritesReducer = (initialState = favoritesStore, action) => {
   if (action.type === REMOVE_JOKE) {
     return {
       ...initialState,
-      favoriteJokes: initialState.favoriteJokes.filter(joke => joke.id !== action.payload)
+      favoriteJokes: initialState.favoriteJokes.filter(joke => joke.id !== action.payload.remove),
+    }
+  }
+  if (action.type === OPEN_FAVORITES) {
+    return {
+      ...initialState,
+      isFavoritesOpen: !initialState.isFavoritesOpen,
+      isDarkBg: !initialState.isDarkBg
+    }
+  }
+  if (action.type === CLOSE_DARK_BG) {
+    return {
+      ...initialState,
+      isDarkBg: initialState.favoriteJokes.length ? true: false,
+      isFavoritesOpen: !initialState.isFavoritesOpen,
     }
   }
   return initialState;
