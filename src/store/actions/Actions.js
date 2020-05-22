@@ -10,7 +10,6 @@ export const REMOVE_JOKE = 'REMOVE_JOKE';
 export const SWITCH_PAGE = 'SWITCH_PAGE';
 export const INDEX_OF_LAST_JOKE = 'INDEX_OF_LAST_JOKE';
 export const OPEN_FAVORITES = 'OPEN_FAVORITES';
-export const CLOSE_DARK_BG = 'CLOSE_DARK_BG';
 
 export const getJoke = (checkedValue) => {
   return async(dispatch) => {
@@ -22,7 +21,6 @@ export const getJoke = (checkedValue) => {
   }
 }
 export const handleRadio = (e, key) => {
-  console.log(e.target.checked)
   return {
     type: CHANGE_RADIO,
     payload: { value: e.target.value, key }
@@ -48,8 +46,6 @@ export const handleInput = (e, key) => {
 }
 export const addJoke = (joke) => {
   return async (dispatch) => {
-    // add joke to localStorage
-
     dispatch({
       type: ADD_JOKE,
       payload: joke
@@ -76,10 +72,5 @@ export const getIndexOfLastJoke = () => {
 export const handleFavoritesOpen = (e) => {
   return {
     type: OPEN_FAVORITES
-  }
-}
-export const closeDarkBg = () => {
-  return {
-    type: CLOSE_DARK_BG
   }
 }

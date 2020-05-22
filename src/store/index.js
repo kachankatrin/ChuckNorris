@@ -1,6 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import {jokesReducer, favoritesReducer} from '../store/reducers/Reducers';
+import { jokesReducer } from '../store/reducers/JokesReducer';
+import { favoritesReducer } from '../store/reducers/FavoritesReucer';
 import {compose} from 'redux';
 
 const reducers = combineReducers({

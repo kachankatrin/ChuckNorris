@@ -59,7 +59,6 @@ export const loadStateFromLocalStorage = () => {
 };
 
 export const saveStateToLocalStorage = (state) => {
-  console.log(state)
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('favArr', serializedState);

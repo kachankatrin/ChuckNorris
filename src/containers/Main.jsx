@@ -8,8 +8,7 @@ import {
   paginate,
   addJoke,
   removeJoke,
-  getIndexOfLastJoke,
-  closeDarkBg
+  getIndexOfLastJoke
 } from '../store/actions/Actions';
 import { connect } from 'react-redux';
 import Search from '../components/Search';
@@ -25,7 +24,7 @@ class Main extends React.Component {
     const favoriteOpen = this.props.favoritesState.isFavoritesOpen ? 'tablet' : '';
     return (
       <div className={favoriteOpen + ' main-container '}>
-      <div className={darkClass} onClick={this.props.closeDarkBg}></div>
+      <div className={darkClass}></div>
         <div className='main'>
           <h3>MSI 2020</h3>
           <Search
@@ -92,7 +91,6 @@ const mapDispatchToProps = {
   paginate,
   addJoke,
   removeJoke,
-  getIndexOfLastJoke,
-  closeDarkBg
+  getIndexOfLastJoke
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

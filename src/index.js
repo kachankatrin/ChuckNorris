@@ -11,7 +11,6 @@ import { saveStateToLocalStorage } from './utils';
 const history = createBrowserHistory;
 store.subscribe(() => {
   const favoriteJokes = store.getState().favoritesState.favoriteJokes
-  // console.log(storeM.favoritesState)
   saveStateToLocalStorage(favoriteJokes);
 })
 ReactDOM.render(

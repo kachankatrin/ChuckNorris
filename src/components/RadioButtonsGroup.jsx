@@ -25,7 +25,6 @@ function RadioButtons(props) {
   return (
     <form onKeyPress={keyPressed}>
       {values.map(item => {
-        console.log(item.search)
         return (
           <div className='radio-container'>
             <label className='radiobutton'>

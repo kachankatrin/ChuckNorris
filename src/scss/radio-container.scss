@@ -1,7 +1,6 @@
 @import './categories-radio-container.scss';
 @import './buttons.scss';
 .radio-container {
-  // width: fit-content;
   margin-bottom: 1rem;
   &:nth-child(3) {
     display: flex;
@@ -25,7 +24,6 @@
       }
     }
   }
-  // margin: 0.5rem 0;
   .radiobutton {
     font-style: normal;
     font-weight: normal;
