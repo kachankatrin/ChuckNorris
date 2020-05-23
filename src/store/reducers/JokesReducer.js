@@ -32,18 +32,21 @@ export const jokesReducer = (initialState = initStore, action) => {
     }
   }
   if (action.type === CHANGE_RADIO) {
+    console.log(action.payload)
     return {
       ...initialState,
       [action.payload.key]: action.payload.value,
-      searchapi: action.payload.value
+      searchapi: action.payload.value === 'random?category=' ? 'random?category=animal' : action.payload.value,
+      category: action.payload.value === 'random?category=' ? 'animal' : ''
     }
   }
   if (action.type === SET_SEARCH_TYPE) {
+    console.log(action.payload)
     return {
       ...initialState,
       [action.payload.searchType]: action.payload.type,
       textsearch: '',
-      category: ''
+      category: '',
     }
   }
   if (action.type === SELECT_CATEGORY) {
